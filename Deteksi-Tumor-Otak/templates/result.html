@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/result.css') }}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Suez+One&family=Tauri&display=swap"
+      rel="stylesheet" />
+    <title>Detection Results</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Conclusion Section -->
+      <section class="section">
+        <div class="section-header">CONCLUSION</div>
+        <div class="conclusion-content">
+          <div class="image-card">
+            <img
+              src="{{ url_for('send_result_file', filename=uploaded_image) }}"
+              alt="Brain Icon" />
+          </div>
+          <div class="conclusion-details">
+            <div class="info-box predict">
+              <h3>Prediction</h3>
+              <p>
+                From the image provided, the prediction result is:
+                <strong>{{ prediction }}</strong>
+              </p>
+            </div>
+            <div class="info-box suggest">
+              <h3>Suggestion</h3>
+              <p>{{ suggestion | safe }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Image Segmentation Section -->
+      <section class="section">
+        <div class="section-header">IMAGE SEGMENTATION</div>
+        <div class="segmentation-grid">
+          <div class="seg-item">
+            <div class="label">Edge Detection</div>
+            <div class="image-card">
+              <img
+                src="{{ url_for('send_result_file', filename='edges.png') }}"
+                alt="Edge Detection" />
+            </div>
+          </div>
+          <div class="seg-item">
+            <div class="label">Segmentation</div>
+            <div class="image-card">
+              <img
+                src="{{ url_for('send_result_file', filename='segmentation.png') }}"
+                alt="Segmentation" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Histogram Section -->
+      <section class="section">
+        <div class="section-header">HISTOGRAM</div>
+        <div class="histogram-content">
+          <div class="image-card">
+            <img
+              src="{{ url_for('send_result_file', filename='histogram.png') }}"
+              alt="Histogram" />
+          </div>
+        </div>
+      </section>
+
+      <a href="/" class="back-button">Back to Home</a>
+    </div>
+  </body>
+</html>
